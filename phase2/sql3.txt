@@ -1,0 +1,181 @@
+use telecom;
+-- 59
+CREATE TABLE dim_contract (
+    contract_id INT AUTO_INCREMENT PRIMARY KEY,
+    contract_name VARCHAR(30) NOT NULL UNIQUE
+);
+INSERT INTO dim_contract (contract_name)
+SELECT DISTINCT Contract
+FROM stg_customer_raw
+WHERE Contract IS NOT NULL
+  AND Contract <> '';
+  
+SELECT *
+FROM dim_contract;
+  
+  
+  
+  
+  
+-- 60  
+CREATE TABLE dim_payment (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    payment_method VARCHAR(50) NOT NULL UNIQUE
+);
+INSERT INTO dim_payment (payment_method)
+SELECT DISTINCT PaymentMethod
+FROM stg_customer_raw
+WHERE PaymentMethod IS NOT NULL
+  AND PaymentMethod <> '';
+SELECT *
+FROM dim_payment;
+
+
+
+
+-- 61
+CREATE TABLE customers1 (
+    customer_id VARCHAR(20) PRIMARY KEY,
+    gender VARCHAR(10),
+    senior_citizen INT,
+    partner INT,
+    dependents INT
+);
+INSERT INTO customers1 (
+    customer_id,
+    gender,
+    senior_citizen,
+    partner,
+    dependents
+)
+SELECT
+    customerID,
+    LOWER(gender),
+    CAST(SeniorCitizen AS UNSIGNED),
+
+    CASE
+        WHEN Partner = 'Yes' THEN 1
+        WHEN Partner = 'No' THEN 0
+        ELSE NULL
+    END,
+
+    CASE
+        WHEN Dependents = 'Yes' THEN 1
+        WHEN Dependents = 'No' THEN 0
+        ELSE NULL
+    END
+
+FROM stg_customer_raw;
+
+
+
+
+
+
+
+-- 62
+CREATE TABLE fact_customer_account (
+    customer_id VARCHAR(20) PRIMARY KEY,
+    tenure INT,
+    monthly_charges DECIMAL(10,2),
+    total_charges DECIMAL(12,2),
+    churn INT,
+    contract_id INT,
+    payment_id INT,
+
+    FOREIGN KEY (customer_id)
+        REFERENCES customers1(customer_id),
+
+    FOREIGN KEY (contract_id)
+        REFERENCES dim_contract(contract_id),
+
+    FOREIGN KEY (payment_id)
+        REFERENCES dim_payment(payment_id)
+);
+
+-- the error i got is because of the empty space. so trim it.
+INSERT INTO fact_customer_account (
+    customer_id,
+    tenure,
+    monthly_charges,
+    total_charges,
+    churn,
+    contract_id,
+    payment_id
+)
+SELECT
+    s.customerID,
+
+    s.tenure,
+
+    s.MonthlyCharges,
+
+    CAST(
+        NULLIF(TRIM(s.TotalCharges), '')
+        AS DECIMAL(12,2)
+    ),
+
+    CASE
+        WHEN s.Churn = 'Yes' THEN 1
+        WHEN s.Churn = 'No' THEN 0
+        ELSE NULL
+    END,
+
+    c.contract_id,
+
+    p.payment_id
+
+FROM stg_customer_raw s
+
+JOIN dim_contract c
+    ON s.Contract = c.contract_name
+
+JOIN dim_payment p
+    ON s.PaymentMethod = p.payment_method;
+
+
+
+
+-- 63
+SELECT COUNT(*) AS contract_count
+FROM dim_contract;
+SELECT COUNT(*) AS payment_count
+FROM dim_payment;
+SELECT COUNT(*) AS customer_count
+FROM customers1;
+SELECT COUNT(*) AS account_count
+FROM fact_customer_account;
+
+
+
+
+
+
+SELECT COUNT(*) AS null_total_charges
+FROM fact_customer_account
+WHERE total_charges IS NULL;
+
+select distinct churn from fact_customer_account;
+
+
+
+
+-- 64
+SELECT
+    c.customer_id,
+    c.gender,
+    c.partner,
+    f.tenure,
+    f.monthly_charges,
+    f.total_charges,
+    f.churn,
+    dc.contract_name
+FROM customers1 c
+
+JOIN fact_customer_account f
+    ON c.customer_id = f.customer_id
+
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+
+LIMIT 10;

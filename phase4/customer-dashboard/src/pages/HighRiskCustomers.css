@@ -1,0 +1,324 @@
+.high-risk-page {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #f7f8fc;
+    min-height: calc(100vh - 70px);
+}
+
+
+/* Header */
+
+.high-risk-header {
+    margin-bottom: 25px;
+}
+
+.high-risk-header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: #1f2937;
+}
+
+.high-risk-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* Count Banner */
+
+.risk-count-banner {
+    background: white;
+    border: 1px solid #fecaca;
+    border-left: 5px solid #ef4444;
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.count-number {
+    font-size: 26px;
+    font-weight: 700;
+    color: #dc2626;
+}
+
+.count-text {
+    color: #4b5563;
+    font-size: 15px;
+}
+
+
+/* Table Container */
+
+.risk-table-container {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow-x: auto;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Table */
+
+.risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.risk-table th {
+    padding: 15px 18px;
+    background: #f9fafb;
+
+    text-align: left;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.risk-table td {
+    padding: 17px 18px;
+
+    color: #374151;
+    font-size: 14px;
+
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.risk-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.risk-table tbody tr:hover {
+    background: #fffafa;
+}
+
+
+/* Customer ID */
+
+.customer-id {
+    font-weight: 600;
+    color: #1f2937 !important;
+}
+
+
+/* Sortable Tenure */
+
+.sortable-header {
+    cursor: pointer;
+    user-select: none;
+
+    transition: background 0.2s ease;
+}
+
+.sortable-header:hover {
+    background: #f3f4f6;
+}
+
+.sort-icon {
+    margin-left: 8px;
+    color: #2563eb;
+    font-size: 10px;
+}
+
+
+/* Monthly Charges */
+
+.charges {
+    font-weight: 600;
+    color: #111827 !important;
+}
+
+
+/* Contract */
+
+.contract-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background: #eff6ff;
+    color: #1d4ed8;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* Risk Reason */
+
+.risk-reason {
+    color: #b91c1c !important;
+    font-size: 13px !important;
+}
+
+
+/* Load More */
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+
+    padding: 25px 0;
+}
+
+.load-more-button {
+    padding: 11px 28px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.load-more-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.load-more-button:active {
+    transform: translateY(0);
+}
+
+
+/* Empty State */
+
+.no-customers {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dcfce7;
+    color: #16a34a;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.no-customers h2 {
+    margin: 0 0 8px;
+
+    color: #1f2937;
+    font-size: 20px;
+}
+
+.no-customers p {
+    margin: 0;
+
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* Loading */
+
+.high-risk-loading {
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #6b7280;
+}
+
+.high-risk-spinner {
+    width: 38px;
+    height: 38px;
+
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #2563eb;
+
+    border-radius: 50%;
+
+    animation: highRiskSpin 0.8s linear infinite;
+
+    margin-bottom: 15px;
+}
+
+@keyframes highRiskSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Error */
+
+.high-risk-error {
+    max-width: 600px;
+
+    margin: 50px auto;
+    padding: 18px 20px;
+
+    text-align: center;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .high-risk-page {
+        padding: 25px;
+    }
+
+    .high-risk-header h1 {
+        font-size: 26px;
+    }
+
+}

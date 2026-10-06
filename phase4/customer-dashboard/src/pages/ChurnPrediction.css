@@ -1,0 +1,435 @@
+.prediction-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #f7f8fc;
+    min-height: calc(100vh - 70px);
+}
+
+
+/* Header */
+
+.prediction-header {
+    margin-bottom: 30px;
+}
+
+.prediction-header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: #1f2937;
+}
+
+.prediction-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* Main Layout */
+
+.prediction-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* Cards */
+
+.prediction-card,
+.prediction-result-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.prediction-card h2 {
+    margin: 0 0 7px;
+    color: #1f2937;
+    font-size: 21px;
+}
+
+.form-description {
+    margin: 0 0 25px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* Form */
+
+.prediction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group label span {
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background: white;
+
+    color: #1f2937;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* Error */
+
+.prediction-error {
+    padding: 13px 15px;
+
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+
+    border-radius: 7px;
+
+    color: #b91c1c;
+}
+
+.prediction-error strong {
+    font-size: 14px;
+}
+
+.prediction-error p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+
+
+/* Predict Button */
+
+.predict-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.predict-button:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.predict-button:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+
+/* Button Spinner */
+
+.button-spinner {
+    width: 15px;
+    height: 15px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top: 2px solid white;
+
+    border-radius: 50%;
+
+    animation: buttonSpin 0.7s linear infinite;
+}
+
+@keyframes buttonSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Empty Result */
+
+.prediction-result-card {
+    min-height: 410px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-empty {
+    text-align: center;
+    max-width: 280px;
+}
+
+.result-empty-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.result-empty h2 {
+    margin: 0 0 8px;
+
+    color: #1f2937;
+    font-size: 21px;
+}
+
+.result-empty p {
+    margin: 0;
+
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* Result */
+
+.prediction-result {
+    width: 100%;
+}
+
+.result-title {
+    margin-bottom: 25px;
+
+    color: #1f2937;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+/* Risk Indicator */
+
+.risk-indicator {
+    padding: 25px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    border: 1px solid;
+}
+
+.risk-indicator.low {
+    background: #ecfdf5;
+    border-color: #bbf7d0;
+    color: #15803d;
+}
+
+.risk-indicator.medium {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #b45309;
+}
+
+.risk-indicator.high {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
+}
+
+.risk-score {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.risk-label {
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Prediction */
+
+.prediction-text {
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.result-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.prediction-text h2 {
+    margin: 0;
+
+    color: #1f2937;
+    font-size: 20px;
+}
+
+
+/* Confidence */
+
+.confidence-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.confidence-section .result-label {
+    margin: 0;
+}
+
+
+/* Confidence Badge */
+
+.confidence-badge {
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.confidence-badge.low {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.confidence-badge.medium {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.confidence-badge.high {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* Customer */
+
+.customer-result {
+    padding: 18px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.customer-result strong {
+    color: #1f2937;
+    font-size: 14px;
+}
+
+
+/* Stub Note */
+
+.prediction-note {
+    margin-top: 18px;
+
+    padding: 11px 13px;
+
+    background: #f3f4f6;
+
+    border-radius: 6px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* Responsive */
+
+@media (max-width: 850px) {
+
+    .prediction-page {
+        padding: 25px;
+    }
+
+    .prediction-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .prediction-header h1 {
+        font-size: 27px;
+    }
+
+}

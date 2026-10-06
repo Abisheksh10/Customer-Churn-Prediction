@@ -1,0 +1,284 @@
+.churn-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #f7f8fc;
+    min-height: calc(100vh - 80px);
+}
+
+
+/* Header */
+
+.churn-header {
+    margin-bottom: 30px;
+}
+
+.churn-header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: #1f2937;
+}
+
+.churn-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* Metric Cards */
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+.metric-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.customers-icon {
+    background: #e8f0ff;
+}
+
+.churned-icon {
+    background: #ffe8e8;
+}
+
+.rate-icon {
+    background: #fff3d9;
+}
+
+
+.metric-label {
+    margin: 0 0 5px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.metric-card h2 {
+    margin: 0;
+    font-size: 28px;
+    color: #111827;
+}
+
+
+/* Contract Section */
+
+.contract-section {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-header {
+    margin-bottom: 22px;
+}
+
+.section-header h2 {
+    margin: 0 0 6px;
+    color: #1f2937;
+    font-size: 21px;
+}
+
+.section-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* Table */
+
+.contract-table-container {
+    overflow-x: auto;
+}
+
+.contract-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contract-table th {
+    text-align: left;
+    padding: 14px 16px;
+    background: #f9fafb;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.contract-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #374151;
+}
+
+.contract-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.contract-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.contract-name {
+    font-weight: 600;
+    color: #1f2937 !important;
+}
+
+
+/* Churn Rate Bar */
+
+.rate-cell {
+    min-width: 350px;
+}
+
+.rate-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.rate-bar-background {
+    width: 220px;
+    height: 9px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rate-bar {
+    height: 100%;
+    background: #ef4444;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.rate-wrapper span {
+    min-width: 50px;
+    font-weight: 600;
+    color: #374151;
+}
+
+
+/* Risk Badge */
+
+.risk-badge {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.risk-badge.high {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.risk-badge.medium {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.risk-badge.low {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+
+/* Loading */
+
+.churn-loading {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+}
+
+.spinner {
+    width: 38px;
+    height: 38px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Error */
+
+.churn-error {
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 18px 20px;
+    border-radius: 8px;
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    text-align: center;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .churn-page {
+        padding: 25px;
+    }
+
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rate-cell {
+        min-width: 250px;
+    }
+
+    .rate-bar-background {
+        width: 150px;
+    }
+}

@@ -1,0 +1,83 @@
+use telecom;
+
+-- 83
+SELECT AVG(monthly_charges)
+FROM fact_customer_account;
+
+
+-- 84
+SELECT f.customer_id,
+    f.tenure,
+    f.monthly_charges,
+    dc.contract_name AS contract,
+    'Month-to-month contract + tenure < 12 + above-average monthly charges'
+        AS risk_reason
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+);
+
+
+-- 85 
+SELECT
+    COUNT(*) AS high_risk_count
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+  );
+  
+
+-- 86
+CREATE VIEW v_high_risk_customers AS
+SELECT
+    f.customer_id,
+    f.tenure,
+    f.monthly_charges,
+    dc.contract_name AS contract,
+    'Month-to-month contract + tenure < 12 + above-average monthly charges'
+        AS risk_reason
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+);
+
+
+
+-- 87
+SELECT *
+FROM v_high_risk_customers
+LIMIT 10;
+
+  
+-- 88
+SELECT
+    COUNT(*) AS high_risk_count
+FROM v_high_risk_customers;
+SELECT
+    COUNT(*) AS high_risk_count,
+    ROUND(
+        COUNT(*) * 100.0 /
+        (SELECT COUNT(*) FROM fact_customer_account),
+        2
+    ) AS high_risk_percentage
+FROM v_high_risk_customers;
+
+
+
+-- 89
+Rule-based risk scoring is simple, transparent, and fast to deploy because the business team can clearly understand why a customer was flagged. However, fixed rules can miss complex patterns and relationships between multiple customer attributes, and they may become less effective when customer behavior changes. ML-based scoring can learn patterns from historical data and combine many features to identify customers at risk who may not satisfy predefined rules, although ML models are more complex and can be harder to explain.

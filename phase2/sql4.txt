@@ -1,0 +1,146 @@
+use telecom;
+
+
+-- 67 
+SELECT
+    dc.contract_name AS contract_type,
+    AVG(f.churn) AS churn_rate
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+GROUP BY dc.contract_name
+ORDER BY churn_rate DESC;
+
+
+
+-- 68
+SELECT
+    dp.payment_method,
+    AVG(f.churn) AS churn_rate
+FROM fact_customer_account f
+JOIN dim_payment dp
+    ON f.payment_id = dp.payment_id
+GROUP BY dp.payment_method
+ORDER BY churn_rate DESC;
+
+
+-- 69
+SELECT
+    churn,
+    AVG(monthly_charges) AS avg_monthly_charges
+FROM fact_customer_account
+GROUP BY churn
+ORDER BY churn;
+
+
+
+
+-- 70
+SELECT
+    COUNT(*) AS risky_customer_count
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+  );
+  
+  SELECT
+    f.customer_id,
+    f.tenure,
+    f.monthly_charges,
+    dc.contract_name,
+    f.churn
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+  )
+ORDER BY f.monthly_charges DESC;
+
+
+
+
+#71
+SELECT
+    COUNT(*) AS high_value_churned_customers,
+    AVG(tenure) AS average_tenure
+FROM fact_customer_account
+WHERE churn = 1
+  AND total_charges > 2000;
+  
+  
+  
+-- 72
+-- query1
+SELECT
+    dc.contract_name AS contract_type,
+    AVG(f.churn) AS churn_rate
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+GROUP BY dc.contract_name
+ORDER BY churn_rate DESC;
+
+-- query2
+SELECT
+    dp.payment_method,
+    AVG(f.churn) AS churn_rate
+FROM fact_customer_account f
+JOIN dim_payment dp
+    ON f.payment_id = dp.payment_id
+GROUP BY dp.payment_method
+ORDER BY churn_rate DESC;
+
+
+-- query3
+SELECT
+    churn,
+    AVG(monthly_charges) AS avg_monthly_charges
+FROM fact_customer_account
+GROUP BY churn
+ORDER BY churn;
+
+-- query4
+SELECT
+    COUNT(*) AS risky_customer_count
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+WHERE dc.contract_name = 'Month-to-month'
+  AND f.tenure < 12
+  AND f.monthly_charges > (
+      SELECT AVG(monthly_charges)
+      FROM fact_customer_account
+  );
+  
+  
+  
+-- query5
+SELECT
+    COUNT(*) AS high_value_churned_customers,
+    AVG(tenure) AS average_tenure
+FROM fact_customer_account
+WHERE churn = 1
+  AND total_charges > 2000;
+  
+  
+  
+-- 73
+SELECT
+    dc.contract_name AS contract_type,
+    AVG(f.monthly_charges) AS avg_monthly_charges,
+    AVG(f.tenure) AS avg_tenure,
+    AVG(f.churn) AS churn_rate
+FROM fact_customer_account f
+JOIN dim_contract dc
+    ON f.contract_id = dc.contract_id
+GROUP BY dc.contract_name
+ORDER BY churn_rate DESC;

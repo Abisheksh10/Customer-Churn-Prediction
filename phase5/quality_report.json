@@ -1,0 +1,65 @@
+[
+    {
+        "check_name": "Null rate check - MonthlyCharges",
+        "status": "PASS",
+        "value_found": 0.0,
+        "threshold": "<= 0%",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Null rate check - tenure",
+        "status": "PASS",
+        "value_found": 0.0,
+        "threshold": "<= 0%",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Value range check - tenure",
+        "status": "PASS",
+        "value_found": "0 invalid values",
+        "threshold": "0 to 100",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Value range check - MonthlyCharges",
+        "status": "PASS",
+        "value_found": "0 invalid values",
+        "threshold": "> 0",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Allowed values check - Contract",
+        "status": "PASS",
+        "value_found": "No invalid values",
+        "threshold": [
+            "Two year",
+            "Month-to-month",
+            "One year"
+        ],
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Row count check",
+        "status": "PASS",
+        "value_found": 7043,
+        "threshold": ">= 7000",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Duplicate check - customerID",
+        "status": "PASS",
+        "value_found": "0 duplicates",
+        "threshold": "0 duplicates",
+        "severity": "CRITICAL"
+    },
+    {
+        "check_name": "Churn distribution check",
+        "status": "PASS",
+        "value_found": {
+            "No": 5174,
+            "Yes": 1869
+        },
+        "threshold": "Both Yes and No must be present",
+        "severity": "WARNING"
+    }
+]
